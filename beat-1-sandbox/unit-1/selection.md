@@ -138,10 +138,9 @@ This is also the basis for the claim comment you write in Unit 2.
 
 [Answer all three:
 
-1. The issue's fit to your interests and to the time available.
-2. What the verdict identified correctly, and what you weighed that the rubric could
-   not.
-3. The anticipated difficulty in claiming it.]
+1. Most of my work is API and UI test automation in TypeScript with API testn Postman and Newman. Issue #47 asks for example `curl` commands in `docs/API.md`, which is similar to writing a request collection against documented endpoints but in a different tool. The estimate is 2-3 hours for documentation without changes to logic.
+2. The rubric confirms this is a good first issue because: the repo has commits since last week, the issue has no assignee, no comments, no linked PRs, and the contributing docs state no AI restriction. The rubric cannot weigh in on which endpoints need examples or how many and I'm reading that as all endts in `docs/API.md`.
+3. I anticipate low difficulty in claiming it because the issue is unassigned with no comments or linked PRs. The risk is another classmate picks the same issue.
 
 ---
 
