@@ -57,8 +57,7 @@ one in the week it belongs to.
 
 **Unit 5: [one line on the tool work]**
 
-[2-4 sentences: what you built (the scout, your strategy), what broke
-or fell short, what changed because of it.]
+ I built a scout using four GitHub issue searches and five ranking filters (TypeScript good-first-issues, Playwright, e2e tests, and GitHub Actions in TypeScript repos), then ran a scan on five issues. The results favored one org and surfaced mostly brand-new issues from new repos with little adoption. I changed the cap to per-owner, added "Repo has adoption" to the rubric, and updated the AI-policy check to flag repos with hooks that reject AI co-author trailers.
 
 **Unit 6: [one line on the tool work]**
 
