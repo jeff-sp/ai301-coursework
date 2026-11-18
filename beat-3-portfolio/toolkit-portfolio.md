@@ -135,7 +135,7 @@ Result: The 52-word reply passed the hook and was posted on 2026-11-08. A mainta
 
 ## Limitations and What's Next
 
-The toolkit checks what I write and what I can run on my own machine. It could not make the Kaoto test fail (21 runs, 147 of 147 tests passed), and it cannot re-run CI on a repo where I only have pull access, so the fix rests on a DOM trace and unit tests, and only later nightly runs can show the flake is gone. Every tool that calls the Claude CLI also needed the same Windows patch (`shutil.which`) before it ran at all, which I fixed four times in four places instead of once.
+The toolkit checks what I write and what I can run on my own machine. It could not make the Kaoto test fail (21 runs, 147 of 147 tests passed). It also cannot re-run CI on a repo where I only have pull access. So the fix rests on a DOM trace and unit tests, and only later nightly runs can show the flake is gone. Every tool that calls the Claude CLI also needed the same Windows patch (`shutil.which`) before it ran at all, which I fixed four times in four places instead of once.
 
 Next I would check Kaoto's nightly runs for `stepPaste` now that the fix is merged, move issue-scout's per-owner cap to run after the fit ordering, and put the CLI lookup in one shared helper that all four scripts import.
 

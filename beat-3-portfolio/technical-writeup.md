@@ -36,7 +36,7 @@ Re-ranking the same 388 results with the new cap dropped 2 tdk-cli-core issues f
 
 ### The rubric said "ambitious" and I took it anyway (2026-10-24)
 
-On 2026-10-24 I replaced the “Scope fits newcomer” check with scope-feasible plus a difficulty note, so #3529 still passed but was now labeled “ambitious” and ranked second behind an easier issue, and I chose it anyway because its open question was one I could ask a maintainer.
+On 2026-10-24 I replaced the “Scope fits newcomer” check with `scope-feasible` plus a difficulty note. Issue #3529 still passed, but it now carried the label “ambitious”. That label moved it to second place, behind an easier issue. I chose it anyway because its open question was one I could ask a maintainer.
 
 ```
 2. KaotoIO/kaoto#3529, flaky `stepPaste.cy.ts` (accept, ambitious)
@@ -99,7 +99,9 @@ expected document not to contain element, found <button
 
 ### My first fix did nothing on the second click (2026-10-31)
 
-My first wrapper computed the key from the previous state. The "after" trace looked clean for the wrong reason. The second right-click on the same node changed nothing because the closing mousedown and the contextmenu landed in one React batch. The id came out as 1 again. I changed to a `useRef` counter and added a fifth unit test that dispatches both events in one `act()`.
+My first wrapper computed the key from the previous state. The "after" trace looked clean for the wrong reason. The second right-click on the same node changed nothing, and here is why. A real right-click fires two events: `mousedown`, then `contextmenu`. The `mousedown` closes the open menu by setting the state to `null`. React runs both updates in one batch, so by the time my updater ran, `current` was already `null`. That made the new id `(null?.id ?? 0) + 1`, which is 1, the same id the first menu had. React uses that id as the key, and an unchanged key tells it to keep the same `ContextMenu` instance, so the old items never left the DOM.
+
+I changed to a `useRef` counter, which lives outside the state, so the queued close cannot reset it. I also added a fifth unit test that dispatches both events in one `act()`.
 
 First version:
 
@@ -130,7 +132,7 @@ I opened PR #4306 with 5 files, +272 / -11, one new wrapper, six new tests, and 
 +export const CustomNodeWithSelection = withSelection()(withNodeContextMenu(NodeContextMenuFn)(CustomNodeObserver));
 ```
 
-One day after opening the PR, the maintainer asked a question, and I replied.
+A maintainer asked a question the next day, 2026-11-02. I did not see it for three days. I then spent the rest of the week checking every claim in my draft reply against the PatternFly source and cutting it to 52 words. I posted it on 2026-11-09, a week after the question.
 
 > **lordrip, 2026-11-02:** Hi @jeff-sp, thanks for the thorough analysis. If I understood correctly while checking the code, this PR brings the original `withContextMenu` from Patternfly and adjust it to avoid the issue you described, is that the case?
 
